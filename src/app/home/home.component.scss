@@ -1,0 +1,42 @@
+
+
+.main {
+
+    background: #f2f2f2;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .hero {
+       
+        &__image {
+         img {
+              width: 100%;
+         } 
+        }
+
+        &__text {
+            display: inherit;
+            flex-direction: column;
+            justify-content: center;
+            
+
+            &-btn {
+                padding: 14px 45px;
+                background: #0078d4;
+                color: #ffffff;
+                border: none;
+                outline: none;
+                border-radius: 2px;
+                box-shadow: 0px 2px 4px -0.7px rgba(0,0,0,0.25);
+
+                &:hover {
+                    text-decoration: none;
+                    background: #106ebe;
+                }
+
+            }
+        }
+   }
+}

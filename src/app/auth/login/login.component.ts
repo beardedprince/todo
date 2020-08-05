@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { AuthService } from 'core/services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private user: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private user: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -25,13 +26,12 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.user.loginUser(this.loginForm.value).subscribe( (data: any) => {
       if (data) {
-        console.log(data);
+        this.toastr.success('Login successfull');
         localStorage.setItem('token', data.token);
-        console.log('token', data.token);
         this.router.navigate(['/user', 'list']);
       }
     }, err => {
-      console.log(err.error);
+      this.toastr.error(err.error);
     });
   }
 
