@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 login-col-1">
+            <img src="../../../assets/login.svg" alt="login user" sizes="" srcset="">
+        </div>
+        <div class="col-md-4 login-col-2 login">
+            <h1 class="login__heading"> Login to your account </h1>
+            <p class="login__text">Welcome back! Please login to your account</p>
+
+            <form [formGroup] = "loginForm" (ngSubmit) = "submitLogin()" class="form">
+            
+                <div class="form__group">
+                    <input type="text" class="form__input" placeholder="Enter email" formControlName = "email">
+                </div>
+                <div class="form__group">
+                    <input type="password" class="form__input" placeholder="Enter password" formControlName = "password">
+                </div>
+                <div class="form__group">
+                    <button type="submit" class="btn"> log in </button>
+                </div>
+                <p class="text-center"> Create new account <a [routerLink]="['/auth', 'register']" > Sign up </a> </p>
+    
+            </form>
+        </div>
+    </div>
+</div>
