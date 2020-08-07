@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isLoading = false;
 
   constructor(private fb: FormBuilder, private user: AuthService, private router: Router, private toastr: ToastrService) { }
 
@@ -23,12 +24,13 @@ export class LoginComponent implements OnInit {
   }
 
   submitLogin() {
-    console.log(this.loginForm.value);
+    this.isLoading = true;
     this.user.loginUser(this.loginForm.value).subscribe( (data: any) => {
       if (data) {
         this.toastr.success('Login successfull');
         localStorage.setItem('token', data.token);
-        this.router.navigate(['/user', 'list']);
+        this.isLoading = false;
+        this.router.navigate(['/user', 'board']);
       }
     }, err => {
       this.toastr.error(err.error);
