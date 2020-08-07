@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  isLoading = false;
 
   constructor(private fb: FormBuilder, private user: AuthService, private router: Router, private toastr: ToastrService) { }
 
@@ -28,17 +29,15 @@ export class RegisterComponent implements OnInit {
   }
 
   submitSignup() {
-    console.log(this.registerForm.value);
+    this.isLoading = true;
     this.user.registerUser(this.registerForm.value).subscribe( data => {
       if (data) {
         this.toastr.success('Registration successfull');
-
+        this.isLoading = false;
         this.router.navigate(['/auth', 'login']);
-        // dont forget to add toastr
       }
     }, err => {
       this.toastr.error(err.error);
-
     });
   }
 

@@ -18,7 +18,6 @@ import { CoreModule } from 'core/core.module';
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
     ]),
-    CoreModule,
   ],
   exports: [
     LoginComponent,

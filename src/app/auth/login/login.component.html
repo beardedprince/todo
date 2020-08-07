@@ -8,6 +8,12 @@
             <p class="login__text">Welcome back! Please login to your account</p>
 
             <form [formGroup] = "loginForm" (ngSubmit) = "submitLogin()" class="form">
+
+                <div class="d-flex justify-content-center mt-2">
+                    <div class="spinner-grow text-success" style="width: 3rem; height: 3rem;" role="status" *ngIf = "isLoading">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
             
                 <div class="form__group">
                     <input type="text" class="form__input" placeholder="Enter email" formControlName = "email">
@@ -16,7 +22,7 @@
                     <input type="password" class="form__input" placeholder="Enter password" formControlName = "password">
                 </div>
                 <div class="form__group">
-                    <button type="submit" class="btn"> log in </button>
+                    <button type="submit" class="btn" [disabled]="loginForm.invalid"> log in </button>
                 </div>
                 <p class="text-center"> Create new account <a [routerLink]="['/auth', 'register']" > Sign up </a> </p>
     
