@@ -85,7 +85,6 @@ isLoading = false;
   }
 
   goToList(title: any, id: any) {
-    console.log(title, id);
     this.router.navigate(['/user', 'board', title, id]);
   }
 

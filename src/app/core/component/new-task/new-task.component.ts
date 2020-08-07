@@ -14,12 +14,14 @@ import { TaskService } from 'core/services/task.service';
 export class NewTaskComponent implements OnInit {
 
   taskForm: FormGroup;
+  editTaskForm: FormGroup;
   todolists: any;
   isLoading = false;
   id: any;
   listTitle: any;
   tasks: any;
   noData: boolean;
+  taskId: any;
 
 
     constructor( private fb: FormBuilder, private title: Title,
@@ -34,6 +36,7 @@ export class NewTaskComponent implements OnInit {
       this.id = this.route.snapshot.params.id;
       this.listTitle = this.route.snapshot.params.title;
       this.getTaskByListsId();
+      this.createEditTaskForm();
 
 
     }
@@ -55,7 +58,6 @@ export class NewTaskComponent implements OnInit {
     getTaskByListsId() {
       this.taskService.getTasksByListID(this.id).subscribe( (data: any) => {
         if (data) {
-          console.log('tasks', data);
           this.tasks = data.data;
         }
       }, err => {
@@ -67,7 +69,6 @@ export class NewTaskComponent implements OnInit {
       this.isLoading = true;
       this.taskService.deleteTaskByID(id).subscribe(data => {
         if (data) {
-          console.log(data);
           this.toastr.success('Task deleted successfully');
           this.getTaskByListsId();
           this.isLoading = false;
@@ -76,4 +77,46 @@ export class NewTaskComponent implements OnInit {
         this.toastr.error(err.error.message);
       });
     }
+
+    editTask(id) {
+      this.taskId = id;
+      this.getTaskById();
+    }
+
+    getTaskById() {
+      this.taskService.getTaskByID(this.taskId).subscribe( result => {
+        if (result) {
+          this.setUpData(result);
+        }
+      }, err => {
+        this.toastr.error(err.error.message);
+      });
+    }
+
+    createEditTaskForm() {
+      this.editTaskForm = this.fb.group({
+        task: ['', Validators.required]
+      });
+    }
+
+    setUpData(result: any) {
+      this.editTaskForm = this.fb.group({
+        task : result.task
+      });
+
+    }
+
+    submitTaskEdit() {
+      this.taskService.editTaskByID(this.taskId, this.editTaskForm.value).subscribe( data => {
+        if (data) {
+          this.toastr.success('Task edited successfully');
+          this.isLoading = false;
+          this.getTaskByListsId();
+
+        }
+      }, err => {
+        this.toastr.error(err.error.message);
+      });
+    }
+
 }

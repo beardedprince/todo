@@ -24,4 +24,14 @@ path = environment.path;
     const url = `${this.path + '/task'}/${id}`;
     return this.http.delete(url);
   }
+
+  getTaskByID(id) {
+    const url = `${this.path + '/task'}/${id}`;
+    return this.http.get(url);
+  }
+
+  editTaskByID(id: any, editTaskForm) {
+    const url = `${this.path + '/task'}/${id}`;
+    return this.http.put(url, editTaskForm);
+  }
 }
