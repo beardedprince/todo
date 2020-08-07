@@ -3,6 +3,9 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { AuthService } from 'core/services/auth.service';
 import { Router } from '@angular/router';
 
+import { ToastrService } from 'ngx-toastr';
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +14,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private user: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private user: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -28,12 +31,14 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm.value);
     this.user.registerUser(this.registerForm.value).subscribe( data => {
       if (data) {
-        console.log(data);
+        this.toastr.success('Registration successfull');
+
         this.router.navigate(['/auth', 'login']);
         // dont forget to add toastr
       }
     }, err => {
-      console.log(err.error);
+      this.toastr.error(err.error);
+
     });
   }
 
