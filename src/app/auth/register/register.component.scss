@@ -1,77 +1,91 @@
-.login-col-1 {
-    background: rgb(244, 247, 248);
-    position: fixed;
-    height: 100vh;
+.row {
+    position: relative;
 
-    img{
-        width: 100% ;
-        height: auto;
-        margin-top: 2rem;
+    
+
+    .login-col-1 {
+        background-color: rgb(244, 247, 248);
+        background-image: url('../../../assets/register.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        position: fixed;
+        height: 100vh;
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            border-radius: 50%;
+            width: 5%;
         }
-}
-
-.login-col-2 {
-    margin-left: auto;
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-content: center;
-    padding: 30px 50px 100px;
-}
-
-.login {
-    &__heading {
-        font-family: 'Work Sans', sans-serif;
-        font-size: 34px;
-        padding-top: 1rem;
-        
+    
+      
     }
-
-    &__text {
-        font-family: 'Source Sans Pro';
-        font-size: 15px;
-        padding: 1rem 0;
+    
+    .login-col-2 {
+        margin-left: auto;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-content: center;
+        padding: 30px 50px 100px;
     }
-
-    .form {
-
-        margin-top: 1rem;
-        
-        &__group:not(:last-child) {
-            margin-bottom: 1.5rem;
+    
+    .login {
+        &__heading {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 34px;
+            padding-top: 1rem;
+            
         }
-
-        &__input {
-            font-size: 1rem;
-            padding: 1rem 1rem;
-            background: #fff;
-            border: none;
-            outline: none;
-            background: #FFFFFF;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.07);
-            border-radius: 6px;
-            width: 100%;
-            display: block;
-            transition: all .3s;
+    
+        &__text {
             font-family: 'Source Sans Pro';
-            transition: all .2;
-
-            &:focus {
-                box-shadow: 0 0 1.1rem rgba(0,0,0, 0.15)
-            }
+            font-size: 15px;
+            padding: 1rem 0;
         }
-
-        
-
-        .btn {
-            background: #13244E;
-            border-radius: 6px;
-            width: 100%;
-            border: none;
-            outline: none;
-            color: #ffffff;
-            text-transform: uppercase;
-            padding: 1rem 1rem;
+    
+        .form {
+    
+            margin-top: 1rem;
+            
+            &__group:not(:last-child) {
+                margin-bottom: 1.5rem;
+            }
+    
+            &__input {
+                font-size: 1rem;
+                padding: 1rem 1rem;
+                background: #fff;
+                border: none;
+                outline: none;
+                background: #FFFFFF;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.07);
+                border-radius: 6px;
+                width: 100%;
+                display: block;
+                transition: all .3s;
+                font-family: 'Source Sans Pro';
+                transition: all .2;
+    
+                &:focus {
+                    box-shadow: 0 0 1.1rem rgba(0,0,0, 0.15)
+                }
+            }
+    
+            
+    
+            .btn {
+                background: #13244E;
+                border-radius: 6px;
+                width: 100%;
+                border: none;
+                outline: none;
+                color: #ffffff;
+                text-transform: uppercase;
+                padding: 1rem 1rem;
+            }
         }
     }
 }
