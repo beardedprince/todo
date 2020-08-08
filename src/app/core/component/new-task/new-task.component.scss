@@ -1,13 +1,14 @@
 .main {
     background: #f2f2f2;
+    height:  100vh;
 
 
     .task {
         position: relative;
         .add-task {
             position: absolute;
-            bottom: 0;
-            right: 0;
+            bottom: 5px;
+            right: 5px;
             border-radius: 50%;
             
         }
