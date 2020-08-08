@@ -48,7 +48,7 @@ user: any;
       if (result) {
         this.listForm.reset();
         this.toastr.success('list added successfully');
-
+        this.router.navigate(['/user', 'board']);
         this.getLists();
       }
     }, err => {
@@ -81,6 +81,7 @@ user: any;
         this.isLoading = false;
         this.toastr.success('List deleted successfully');
         this.getLists();
+        this.router.navigate(['/user', 'board']);
       }
     }, err => {
       this.toastr.error(err.error);

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  path: 'http://localhost:3000/api'
+  // path: 'http://localhost:3000/api',
+  path: 'https://ngtodo-test.herokuapp.com/api',
 };
 
 /*
