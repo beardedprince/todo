@@ -14,8 +14,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ListComponent implements OnInit {
 
   listForm: FormGroup;
+  editListForm: FormGroup;
 todolists: any;
 isLoading = false;
+id: any;
 
 
   constructor( private fb: FormBuilder, private title: Title,
@@ -33,6 +35,9 @@ isLoading = false;
     this.getLists();
 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+    this.createEditListForm();
+
 
   }
 
@@ -58,6 +63,10 @@ isLoading = false;
     });
   }
 
+  goToList(title: any, id: any) {
+    this.router.navigate(['/user', 'board', title, id]);
+  }
+
   deleteList(id: any) {
     this.isLoading = true;
     this.list.deleteList(id).subscribe(data => {
@@ -72,20 +81,49 @@ isLoading = false;
   }
 
   editList(id: any) {
-    this.isLoading = true;
-    this.list.deleteList(id).subscribe(data => {
+    this.id = id;
+    this.getListByID();
+
+  }
+
+  getListByID() {
+    this.list.getListWithID(this.id).subscribe( data => {
       if (data) {
-        this.isLoading = false;
-        this.toastr.success('List deleted successfully');
-        this.getLists();
-      }
-    }, err => {
-      this.toastr.error(err.error);
+            console.log(data);
+            this.setUpData(data);
+          }
+        }, err => {
+          this.toastr.error(err.error);
     });
   }
 
-  goToList(title: any, id: any) {
-    this.router.navigate(['/user', 'board', title, id]);
+  createEditListForm() {
+    this.editListForm = this.fb.group({
+      title: ['', Validators.required]
+    });
   }
+
+  setUpData(data: any) {
+    this.editListForm.patchValue({
+      title: data.title
+    });
+  }
+
+  submitListEdit() {
+    this.isLoading = true;
+
+    this.list.updateListWithID(this.id, this.editListForm.value).subscribe( data => {
+      if (data) {
+        this.editListForm.reset();
+        this.toastr.success('List updated successfully');
+        this.isLoading = false;
+
+        this.getLists();
+      }
+      }, err => {
+          this.toastr.error(err.error);
+      });
+  }
+
 
 }

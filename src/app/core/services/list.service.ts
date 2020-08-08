@@ -22,4 +22,14 @@ path = environment.path;
     const url = `${this.path + '/list'}/${id}`;
     return this.http.delete(url);
   }
+
+  getListWithID(id) {
+    const url = `${this.path + '/list'}/${id}`;
+    return this.http.get(url);
+  }
+
+  updateListWithID(id: any, editListForm) {
+    const url = `${this.path + '/list'}/${id}`;
+    return this.http.put(url, editListForm);
+  }
 }
