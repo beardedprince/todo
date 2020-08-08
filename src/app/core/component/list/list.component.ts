@@ -48,7 +48,7 @@ user: any;
       if (result) {
         this.listForm.reset();
         this.toastr.success('list added successfully');
-
+        this.router.navigate(['/user', 'board']);
         this.getLists();
       }
     }, err => {
