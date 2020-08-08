@@ -18,6 +18,8 @@ export class ListComponent implements OnInit {
 todolists: any;
 isLoading = false;
 id: any;
+token: any;
+user: any;
 
 
   constructor( private fb: FormBuilder, private title: Title,
@@ -38,23 +40,28 @@ id: any;
 
     this.createEditListForm();
 
-
+    this.user =  JSON.parse(localStorage.getItem('user'));
   }
 
   submitList() {
-    this.list.postList(this.listForm.value).subscribe( result => {
+    this.list.postList(this.user._id, this.listForm.value).subscribe( result => {
       if (result) {
         this.listForm.reset();
+        this.toastr.success('list added successfully');
+
         this.getLists();
       }
     }, err => {
+        console.log(err);
         this.toastr.error(err.error);
     });
   }
 
 
   getLists() {
-    this.list.getList().subscribe( (data: any) => {
+    this.user =  JSON.parse(localStorage.getItem('user'));
+
+    this.list.getListWithUserID(this.user._id).subscribe( (data: any) => {
       if (data) {
         this.todolists = data.data;
       }

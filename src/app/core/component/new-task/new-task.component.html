@@ -27,7 +27,7 @@
                   <td class="border-top border-bottom text-left"> {{task.task}}</td>
                   <td class="border-top border-bottom text-left"> {{task.createdAt | date:"short"}}</td>
                   <td class="rounded-right border border-left-0 text-left"> 
-                    <button class="btn btn-info btn-sm fa fa-edit mr-2" (click)="editTask(task._id)" type="button"  data-toggle="modal" data-target="#exampleModal2"> Edit</button>
+                    <button class="btn btn-info btn-sm fa fa-edit mr-2" (click)="editTask(task._id)" type="button"  data-toggle="modal" data-target="#exampleModal4"> Edit</button>
                    <button class="btn btn-danger btn-sm far fa-trash-alt mr-2"  (click)="deleteTask(task._id)" > Delete</button>
                   </td>
                 </tr>
@@ -73,7 +73,7 @@
 
 
 <!--Edit task Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel22" aria-hidden="true">
+<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel22" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

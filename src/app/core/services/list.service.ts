@@ -10,12 +10,18 @@ path = environment.path;
 
   constructor(private http: HttpClient) { }
 
-  postList(listForm) {
-    return this.http.post(this.path + '/list', listForm);
+  // postList(listForm) {
+  //   return this.http.post(this.path + '/list', listForm);
+  // }
+
+  postList(id: any, listForm) {
+    const url = `${this.path + '/list'}/${id}`;
+    return this.http.post(url, listForm);
   }
 
-  getList() {
-    return this.http.get(this.path + '/lists');
+  getListWithUserID(id: any) {
+    const url = `${this.path + '/lists'}/${id}`;
+    return this.http.get(url);
   }
 
   deleteList(id) {

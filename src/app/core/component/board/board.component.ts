@@ -18,10 +18,12 @@ export class BoardComponent implements OnInit {
 listForm: FormGroup;
 todolists: any;
 isLoading = false;
+user: any;
+noData: any;
 
   constructor( private fb: FormBuilder, private title: Title,
                private list: ListService, private toastr: ToastrService,
-               private router: Router, private user: AuthService) { }
+               private router: Router, private userService: AuthService) { }
 
   ngOnInit(): void {
 
@@ -31,15 +33,18 @@ isLoading = false;
       title: ['', Validators.required]
     });
 
+    this.user =  JSON.parse(localStorage.getItem('user'));
     this.getLists();
 
   }
 
   submitList() {
-    this.list.postList(this.listForm.value).subscribe( result => {
+    this.list.postList(this.user._id, this.listForm.value).subscribe( result => {
       if (result) {
         this.listForm.reset();
-        this.getLists();
+        this.toastr.error('list added successfully');
+
+        // this.getLists();
       }
     }, err => {
         this.toastr.error(err.error);
@@ -48,31 +53,35 @@ isLoading = false;
 
 
   getLists() {
-    this.list.getList().subscribe( (data: any) => {
+    this.list.getListWithUserID(this.user._id).subscribe( (data: any) => {
       if (data) {
-        console.log('sas', data);
         this.todolists = data.data;
+        if (this.todolists.length === 0) {
+          this.noData = true;
+        } else {
+          this.noData = false;
+        }
       }
     }, err => {
       this.toastr.error(err.message);
     });
   }
 
-  deleteList(id: any) {
-    this.isLoading = true;
-    this.list.deleteList(id).subscribe(data => {
-      if (data) {
-        this.isLoading = false;
-        this.toastr.success('List deleted successfully');
-        this.getLists();
-      }
-    }, err => {
-      this.toastr.error(err.error);
-    });
-  }
+  // deleteList(id: any) {
+  //   this.isLoading = true;
+  //   this.list.deleteList(id).subscribe(data => {
+  //     if (data) {
+  //       this.isLoading = false;
+  //       this.toastr.success('List deleted successfully');
+  //       this.getLists();
+  //     }
+  //   }, err => {
+  //     this.toastr.error(err.error);
+  //   });
+  // }
 
   logoutUer() {
-    this.user.logoutUser();
+    this.userService.logoutUser();
   }
 
 }

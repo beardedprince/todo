@@ -25,15 +25,17 @@ export class LoginComponent implements OnInit {
 
   submitLogin() {
     this.isLoading = true;
-    this.user.loginUser(this.loginForm.value).subscribe( (data: any) => {
-      if (data) {
-        this.toastr.success('Login successfull');
-        localStorage.setItem('token', data.token);
+    this.user.loginUser(this.loginForm.value).subscribe( (result: any) => {
+      if (result) {
         this.isLoading = false;
+        this.toastr.success('Login successfull');
+        localStorage.setItem('user', JSON.stringify(result.data));
+        this.isLoading = true;
         this.router.navigate(['/user', 'board']);
       }
     }, err => {
-      this.toastr.error(err.error);
+      this.toastr.error(err.error.data);
+      console.log(err);
     });
   }
 
