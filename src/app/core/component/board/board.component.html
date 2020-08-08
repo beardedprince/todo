@@ -1,7 +1,7 @@
 <div class="container-fluid main">
     <div class="container">
-        <div class="row ">
-            <div class="col-md-4 card list mt-5">
+        <div class="row mb-5 ">
+            <div class="col-md-4 card list my-5">
                
                     <div class="d-flex justify-content">
                         <h4 class="p-3"> Create List</h4>
@@ -10,9 +10,14 @@
                     <app-list></app-list>
                
             </div>
-            <div class="col-md-7 offset-md-1 card task mt-5">
-                <button class="btn btn-info add-task"> + </button>
+            <div class="col-md-7 offset-md-1 card task my-5">
+                <section class="info my-5" [hidden] *ngIf = "noData">
+                    <i class="fas fa-chalkboard-teacher fa-4x text-muted pb-4"></i>
+                    <h4 class="text-muted text-center"> No list created yet, <br> click on the list <br> click on the add button to add task to the list </h4>
+                  </section>
             </div>
         </div>
     </div>
+
+    
 </div>

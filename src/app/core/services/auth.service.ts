@@ -21,12 +21,13 @@ export class AuthService {
   }
 
   loggedIn() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('user');
   }
 
   logoutUser() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.router.navigate(['/']);
 
   }
+
 }

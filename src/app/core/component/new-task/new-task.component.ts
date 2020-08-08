@@ -94,6 +94,7 @@ export class NewTaskComponent implements OnInit {
       this.taskService.getTaskByID(this.taskId).subscribe( result => {
         if (result) {
           this.setUpData(result);
+          console.log(result);
         }
       }, err => {
         this.toastr.error(err.error.message);
@@ -114,6 +115,7 @@ export class NewTaskComponent implements OnInit {
     }
 
     submitTaskEdit() {
+      console.log(this.editTaskForm.value);
       this.taskService.editTaskByID(this.taskId, this.editTaskForm.value).subscribe( data => {
         if (data) {
           this.toastr.success('Task edited successfully');
