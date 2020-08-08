@@ -44,7 +44,7 @@ noData: any;
         this.listForm.reset();
         this.toastr.error('list added successfully');
 
-        // this.getLists();
+        this.getLists();
       }
     }, err => {
         this.toastr.error(err.error);

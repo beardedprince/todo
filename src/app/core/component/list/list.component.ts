@@ -81,6 +81,7 @@ user: any;
         this.isLoading = false;
         this.toastr.success('List deleted successfully');
         this.getLists();
+        this.router.navigate(['/user', 'board']);
       }
     }, err => {
       this.toastr.error(err.error);
