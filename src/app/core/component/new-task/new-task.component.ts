@@ -5,6 +5,7 @@ import { ListService } from 'core/services/list.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TaskService } from 'core/services/task.service';
+import { AuthService } from 'core/services/auth.service';
 
 @Component({
   selector: 'app-new-task',
@@ -19,14 +20,15 @@ export class NewTaskComponent implements OnInit {
   isLoading = false;
   id: any;
   listTitle: any;
-  tasks: any;
-  noData: boolean;
+  tasks: any[];
+  noData = false;
   taskId: any;
 
 
     constructor( private fb: FormBuilder, private title: Title,
                  private taskService: TaskService, private toastr: ToastrService,
-                 private router: Router, private route: ActivatedRoute) { }
+                 private router: Router, private route: ActivatedRoute,
+                 private user: AuthService) { }
 
     ngOnInit(): void {
 
@@ -59,9 +61,14 @@ export class NewTaskComponent implements OnInit {
       this.taskService.getTasksByListID(this.id).subscribe( (data: any) => {
         if (data) {
           this.tasks = data.data;
+          if (this.tasks.length === 0) {
+            this.noData = true;
+          } else {
+            this.noData = false;
+          }
         }
       }, err => {
-        this.noData = err.error.message;
+         this.toastr.error(err.error.message);
       });
     }
 
@@ -117,6 +124,10 @@ export class NewTaskComponent implements OnInit {
       }, err => {
         this.toastr.error(err.error.message);
       });
+    }
+
+    logoutUer() {
+      this.user.logoutUser();
     }
 
 }

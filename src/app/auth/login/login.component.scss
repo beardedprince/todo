@@ -76,3 +76,79 @@
         }
     }
 }
+
+
+:host{
+    @media screen and (max-width : "768px") {
+        .login-col-1 {
+            display: none;
+        
+        }
+        
+    }
+    @media screen and (max-width : "600px") {
+        .login-col-1 {
+            display: none;
+        
+        }
+    }
+
+    @media screen and (max-width : "480px") {
+        .login-col-1 {
+            display: none;
+        
+        }
+        .login-col-2 {
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-content: center;
+            padding: 20px 30px 100px;
+        }
+    }
+    @media screen and (max-width : "412px") {
+        .login-col-1 {
+            display: none;
+        
+        }
+        .login-col-2 {
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-content: center;
+            padding: 20px 30px 100px;
+        }
+    }
+
+    @media screen and (max-width : "360px") {
+        .login-col-1 {
+            display: none;
+        
+        }
+        .login-col-2 {
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-content: center;
+            padding: 20px 30px 100px;
+        }
+    }
+
+    @media screen and (max-width : "320px") {
+        .login-col-1 {
+            display: none;
+        
+        }
+        .login-col-2 {
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-content: center;
+            padding: 10px 20px 100px;
+        }
+    }
+}

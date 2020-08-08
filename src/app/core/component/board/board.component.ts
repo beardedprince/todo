@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import {map} from 'rxjs/operators';
+import { AuthService } from 'core/services/auth.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ isLoading = false;
 
   constructor( private fb: FormBuilder, private title: Title,
                private list: ListService, private toastr: ToastrService,
-               private router: Router) { }
+               private router: Router, private user: AuthService) { }
 
   ngOnInit(): void {
 
@@ -68,6 +69,10 @@ isLoading = false;
     }, err => {
       this.toastr.error(err.error);
     });
+  }
+
+  logoutUer() {
+    this.user.logoutUser();
   }
 
 }
