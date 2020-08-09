@@ -10,6 +10,11 @@
     .info {
         display: grid;
         place-items: center;
+
+        ul > li {
+            list-style-type: none;
+            font-size: 1.1rem;
+        }
     }
 
  

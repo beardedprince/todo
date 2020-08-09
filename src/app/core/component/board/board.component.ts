@@ -16,7 +16,7 @@ import { AuthService } from 'core/services/auth.service';
 })
 export class BoardComponent implements OnInit {
 listForm: FormGroup;
-todolists: any;
+listCount: any;
 isLoading = false;
 user: any;
 noData: any;
@@ -55,8 +55,8 @@ noData: any;
   getLists() {
     this.list.getListWithUserID(this.user._id).subscribe( (data: any) => {
       if (data) {
-        this.todolists = data.data;
-        if (this.todolists.length === 0) {
+        this.listCount = data.data;
+        if (this.listCount.length === 0) {
           this.noData = true;
         } else {
           this.noData = false;
@@ -64,6 +64,7 @@ noData: any;
       }
     }, err => {
       this.toastr.error(err.message);
+      console.log(err);
     });
   }
 
