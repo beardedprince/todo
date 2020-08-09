@@ -48,8 +48,8 @@ user: any;
       if (result) {
         this.listForm.reset();
         this.toastr.success('list added successfully');
-        this.router.navigate(['/user', 'board']);
         this.getLists();
+        this.router.navigate(['/user', 'board']);
       }
     }, err => {
         console.log(err);
@@ -66,7 +66,9 @@ user: any;
         this.todolists = data.data;
       }
     }, err => {
-      this.toastr.error(err.message);
+      // this.toastr.error(err.message);
+      console.log(err);
+
     });
   }
 
@@ -101,7 +103,7 @@ user: any;
             this.setUpData(data);
           }
         }, err => {
-          this.toastr.error(err.error);
+          console.log(err);
     });
   }
 
@@ -125,7 +127,7 @@ user: any;
         this.editListForm.reset();
         this.toastr.success('List updated successfully');
         this.isLoading = false;
-
+        this.router.navigate(['/user', 'board']);
         this.getLists();
       }
       }, err => {
