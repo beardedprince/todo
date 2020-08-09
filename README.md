@@ -1,6 +1,18 @@
 # Todo
 
+Todo app built with the MEAN Stack 
+- MongoDB
+- Express
+- Angular
+- Nodejs
+
+
+### Demo 
+
+The [demo](https://todo.beardedprince.vercel.app/) app is hosted using Vercel
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
+
 
 ## Development server
 
